@@ -32,7 +32,7 @@ app.get('/LoanService/V1/loan/:amount/:monthly', (request, response) => {
     response.status(200).send(responseString);
 });
 
-port= process.env.PORT || '8000';
+port= process.env.PORT || '8080';
 console.log('Server running at http://127.0.0.1:'+port);
 console.log('Sample URL: http://127.0.0.1:'+port+'/LoanService/V1/loan/1000/3000 or / for healthcheck');
 app.listen(port);
