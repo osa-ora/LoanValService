@@ -3,18 +3,9 @@ var port = 8080;
 const app = express();
 const bodyParser = require('body-parser');
 
-var todos = [{id: 1, title: 'buy the milk'}, {id: 2, title: 'rent a car'}, {id: 3, title: 'feed the cat'}];
-
 app.use(bodyParser.json())
 
 app.get('/', (request, response) => response.status(200).send('{"status":"UP"}'));
-
-app.post('/', (request, response) => {
-    var newTodo = JSON.parse(request.body);
-    newTodo.id = todos.length + 1;
-    todos.push(newTodo);
-    response.status(201).json();
-});
 
 app.get('/LoanService/V1/loan/:amount/:monthly', (request, response) => {
     var loanAmount = request.params.amount;
