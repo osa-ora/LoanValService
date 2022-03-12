@@ -1,3 +1,8 @@
+apiVersion: image.openshift.io/v1
+kind: ImageStream
+metadata:
+  name: loan-val-service
+  namespace: dev
 kind: BuildConfig
 apiVersion: build.openshift.io/v1
 metadata:
