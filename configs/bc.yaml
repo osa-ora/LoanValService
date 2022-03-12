@@ -1,0 +1,39 @@
+kind: BuildConfig
+apiVersion: build.openshift.io/v1
+metadata:
+  name: loan-val-service
+  namespace: dev
+  labels:
+    app: loan-val-service
+spec:
+  output:
+    to:
+      kind: ImageStreamTag
+      name: 'loan-val-service:latest'
+  successfulBuildsHistoryLimit: 5
+  failedBuildsHistoryLimit: 5
+  strategy:
+    type: Source
+    sourceStrategy:
+      from:
+        kind: ImageStreamTag
+        namespace: openshift
+        name: 'nodejs:14-ubi8'
+  source:
+    type: Git
+    git:
+      uri: 'https://github.com/osa-ora/LoanValService'
+    contextDir: /
+  triggers:
+    - type: Generic
+      generic:
+        secretReference:
+          name: loan-val-service-generic-webhook-secret
+    - type: GitHub
+      github:
+        secretReference:
+          name: loan-val-service-github-webhook-secret
+    - type: ImageChange
+      imageChange: {}
+    - type: ConfigChange
+  runPolicy: Serial
