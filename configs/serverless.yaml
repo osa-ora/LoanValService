@@ -1,0 +1,12 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: loan-val-service
+  namespace: dev
+  labels:
+    app: loan-val-service
+spec:
+  template:
+    spec:
+      containers:
+        - image: image-registry.openshift-image-registry.svc:5000/dev/loan-val-service
