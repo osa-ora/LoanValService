@@ -5,6 +5,7 @@ metadata:
   namespace: dev
   labels:
     app: loan-val-service
+    serving.knative.dev/visibility: cluster-local
 spec:
   template:
     spec:
